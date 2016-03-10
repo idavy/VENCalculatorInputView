@@ -1,0 +1,6 @@
+framework module Pods_VENCalculatorInputView_Example {
+  umbrella header "Pods-VENCalculatorInputView_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

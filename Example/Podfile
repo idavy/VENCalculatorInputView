@@ -1,0 +1,15 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'VENCalculatorInputView_Example', :exclusive => true do
+  pod 'VENCalculatorInputView', :path => '../'
+end
+
+target 'VENCalculatorInputView_Tests', :exclusive => true do
+  pod 'VENCalculatorInputView', :path => '../'
+
+  pod 'Specta'
+  pod 'Expecta'
+  pod 'FBSnapshotTestCase'
+  pod 'Expecta+Snapshots'
+end
