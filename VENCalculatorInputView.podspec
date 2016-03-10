@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Pod/Classes/**/*'
   s.resource_bundles = {
-    'MBProgressHUDExtension' => ['Pod/Assets/*.png']
+    'VENCalculatorInputView' => ['Pod/Assets/*.png']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
