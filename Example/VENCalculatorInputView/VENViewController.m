@@ -7,6 +7,7 @@
 //
 
 #import "VENViewController.h"
+#import "VENCalculatorInputTextField.h"
 
 @interface VENViewController ()
 
@@ -17,7 +18,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	VENCalculatorInputTextField *tf = [[VENCalculatorInputTextField alloc]init];
+	tf.backgroundColor = [UIColor redColor];
+	tf.frame = CGRectMake(0, 0, 100, 30);
+	[self.view addSubview:tf];
 }
 
 - (void)didReceiveMemoryWarning

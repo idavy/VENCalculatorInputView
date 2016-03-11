@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0007B0EA1C71C6BA1B3D7153'
+               BlueprintIdentifier = 'B12413BD603DE2AF1CD1954D'
                BlueprintName = 'Expecta+Snapshots'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Expecta_Snapshots.framework'>

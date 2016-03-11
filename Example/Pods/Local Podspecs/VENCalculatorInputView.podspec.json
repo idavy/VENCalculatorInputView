@@ -1,15 +1,15 @@
 {
   "name": "VENCalculatorInputView",
   "version": "0.1.0",
-  "summary": "A short description of VENCalculatorInputView.",
-  "description": "",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/VENCalculatorInputView",
+  "summary": "VENCalculatorInputView",
+  "description": "This is VENCalculatorInputView",
+  "homepage": "https://github.com/idavy/VENCalculatorInputView",
   "license": "MIT",
   "authors": {
     "Davy": "aidave@126.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/VENCalculatorInputView.git",
+    "git": "https://github.com/idavy/VENCalculatorInputView.git",
     "tag": "0.1.0"
   },
   "platforms": {
@@ -19,7 +19,8 @@
   "source_files": "Pod/Classes/**/*",
   "resource_bundles": {
     "VENCalculatorInputView": [
-      "Pod/Assets/*.png"
+      "Pod/Assets/*.png",
+      "Pod/Classes/*.xib"
     ]
   }
 }
