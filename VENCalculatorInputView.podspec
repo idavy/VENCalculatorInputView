@@ -11,13 +11,13 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/idavy/VENCalculatorInputView"
   s.license          = 'MIT'
   s.author           = { "Davy" => "aidave@126.com" }
-  s.source           = { :git => "https://github.com/idavy/VENCalculatorInputView", :tag => "#{s.version}" }
+  s.source           = { :git => "https://github.com/idavy/VENCalculatorInputView.git", :tag => "#{s.version}" }
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
   s.resource_bundles = {
-    'VENCalculatorInputView' => ['Pod/Assets/*.png']
+    'VENCalculatorInputView' => ['Pod/Assets/*.{png.xib}']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
