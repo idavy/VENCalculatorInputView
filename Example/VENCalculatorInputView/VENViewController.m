@@ -22,6 +22,9 @@
 	tf.backgroundColor = [UIColor redColor];
 	tf.frame = CGRectMake(0, 0, 100, 30);
 	[self.view addSubview:tf];
+    
+    NSString *path = [NSBundle mainBundle].resourcePath;
+    
 }
 
 - (void)didReceiveMemoryWarning
