@@ -7,9 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+@class NumberPadView;
+
+@protocol  NumberPadDelegate <NSObject>
+
+@optional
+- (void)numberPadView:(NumberPadView *)padView didTapKey:(NSString *)key;
+- (void)numberPadViewDidTapBackspace:(NumberPadView *)padView;
+- (void)numberPadViewDidTapDelete:(NumberPadView *)padView;
+@end
+
+@interface NumberPadView : UIView <UIInputViewAudioFeedback>
+@property (nonatomic,weak) __weak id<NumberPadDelegate> delegate;
+
+@property (nonatomic,copy) void (^didTapKeyBlock)(NSString *key);
+@property (nonatomic,copy) void (^didTapBackspaceBlock)();
+@property (nonatomic,copy) void (^didTapDeleteBlock)();
+@end
+
 
 @interface VENNumberPadTextField : UITextField
-
 @property (strong, nonatomic) NSLocale *locale;
-
 @end
+
+

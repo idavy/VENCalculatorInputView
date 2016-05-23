@@ -7,22 +7,6 @@
 //
 
 #import "VENNumberPadTextField.h"
-#define VENCSrcName(file) [@"Frameworks/VENCalculatorInputView.framework" stringByAppendingPathComponent:file]
-
-@class NumberPadView;
-
-@protocol  NumberPadDelegate <NSObject>
-
-@optional
-- (void)numberPadView:(NumberPadView *)padView didTapKey:(NSString *)key;
-- (void)numberPadViewDidTapBackspace:(NumberPadView *)padView;
-- (void)numberPadViewDidTapDelete:(NumberPadView *)padView;
-@end
-
-
-@interface NumberPadView : UIView
-@property (nonatomic,weak) __weak id<NumberPadDelegate> delegate;
-@end
 
 @implementation NumberPadView
 - (instancetype)initWithFrame:(CGRect)frame
@@ -30,7 +14,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 53*4);
-		self.clipsToBounds = YES;
+        self.clipsToBounds = YES;
         [self addViews];
     }
     return self;
@@ -46,7 +30,7 @@
     CGFloat heigh = 53;
     
     NSArray *titleArray = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @".", @"0", @""];
-    NSArray *imageArray = @[@"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",VENCSrcName(@"VENCalculatorIconBackspace")];
+    NSArray *imageArray = @[@"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"VENCalculatorIconBackspace"];
     UIImage *highlightedImage = [self.class imageWithColor:[UIColor colorWithRed:210/255.0 green:213/255.0 blue:219/255.0 alpha:1]];
     UIImage *normalImage = [self.class imageWithColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1]];
     
@@ -81,27 +65,42 @@
     [backBtn setBackgroundImage:normalImage forState:UIControlStateHighlighted];
     [backBtn setBackgroundImage:highlightedImage forState:UIControlStateNormal];
     
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(deleteTap)];
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(deleteTap:)];
     [backBtn addGestureRecognizer:longPress];
 }
-- (void)deleteTap
+- (void)deleteTap:(UILongPressGestureRecognizer *)pressGes
 {
-    if ([self.delegate respondsToSelector:@selector(numberPadViewDidTapDelete:)]) {
-        [self.delegate numberPadViewDidTapDelete:self];
+    if (pressGes.state == UIGestureRecognizerStateBegan) {
+        [[UIDevice currentDevice] playInputClick];
+        if ([self.delegate respondsToSelector:@selector(numberPadViewDidTapDelete:)]) {
+            [self.delegate numberPadViewDidTapDelete:self];
+            return;
+        }
+        if (self.didTapDeleteBlock) {
+            self.didTapDeleteBlock();
+        }
     }
 }
 
 - (void)userDidTapKey:(UIButton *)btn
 {
+    [[UIDevice currentDevice] playInputClick];
     if (btn.tag != 66+11) {
         if ([self.delegate respondsToSelector:@selector(numberPadView:didTapKey:)]) {
             [self.delegate numberPadView:self didTapKey:btn.titleLabel.text];
+            return;
         }
-        
+        if (self.didTapKeyBlock) {
+            self.didTapKeyBlock(btn.titleLabel.text);
+        }
     }
     else {
         if ([self.delegate respondsToSelector:@selector(numberPadViewDidTapBackspace:)]) {
             [self.delegate numberPadViewDidTapBackspace:self];
+            return;
+        }
+        if (self.didTapBackspaceBlock) {
+            self.didTapBackspaceBlock();
         }
     }
 }
@@ -117,6 +116,11 @@
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return img;
+}
+#pragma mark - UIInputViewAudioFeedback
+
+- (BOOL)enableInputClicksWhenVisible {
+    return YES;
 }
 @end
 
