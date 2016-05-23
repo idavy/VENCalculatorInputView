@@ -5,6 +5,7 @@
 #import "VENCalculatorInputTextField.h"
 #import "VENCalculatorInputView.h"
 #import "VENMoneyCalculator.h"
+#import "VENNumberPadTextField.h"
 
 FOUNDATION_EXPORT double VENCalculatorInputViewVersionNumber;
 FOUNDATION_EXPORT const unsigned char VENCalculatorInputViewVersionString[];

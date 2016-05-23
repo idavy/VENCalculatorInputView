@@ -8,6 +8,7 @@
 
 #import "VENViewController.h"
 #import "VENCalculatorInputTextField.h"
+#import "VENNumberPadTextField.h"
 
 @interface VENViewController ()
 
@@ -18,13 +19,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	VENCalculatorInputTextField *tf = [[VENCalculatorInputTextField alloc]init];
+	VENNumberPadTextField *tf = [[VENNumberPadTextField alloc]init];
 	tf.backgroundColor = [UIColor redColor];
-	tf.frame = CGRectMake(0, 0, 100, 30);
+	tf.frame = CGRectMake(10, 100, 100, 30);
 	[self.view addSubview:tf];
-    
-    NSString *path = [NSBundle mainBundle].resourcePath;
-    
 }
 
 - (void)didReceiveMemoryWarning
