@@ -40,7 +40,8 @@
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.layer.borderColor = [UIColor colorWithRed:140/255.0 green:140/255.0 blue:140/255.0 alpha:1].CGColor;
-        btn.layer.borderWidth = 0.25;
+        CGFloat scale = [[UIScreen mainScreen] scale];
+        btn.layer.borderWidth = 0.5/scale;
         btn.frame = CGRectMake(width*y, heigh*x, width, heigh);
         [btn setTitle:titleArray[i] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
