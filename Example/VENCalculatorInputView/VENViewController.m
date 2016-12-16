@@ -24,7 +24,10 @@
 	tf.frame = CGRectMake(10, 100, 100, 30);
 	[self.view addSubview:tf];
 }
-
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

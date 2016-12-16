@@ -105,6 +105,17 @@
         }
     }
 }
+
+- (void)showDotSign
+{
+    UIButton *dianBtn = (UIButton *)[self viewWithTag:66+9];
+    [dianBtn setTitle:@"." forState:UIControlStateNormal];
+}
+- (void)showNegativeSign{
+    UIButton *negativeBtn = (UIButton *)[self viewWithTag:66+9];
+    [negativeBtn setTitle:@"-" forState:UIControlStateNormal];
+}
+
 +(UIImage *)imageWithColor:(UIColor *)aColor{
     return [self imageWithColor:aColor withFrame:CGRectMake(0, 0, 1, 1)];
 }
@@ -125,9 +136,10 @@
 }
 @end
 
-@interface VENNumberPadTextField()<NumberPadDelegate>
 
-@property (nonatomic,strong) NumberPadView *numberPadView;
+#import "UITextField+VENCalculatorInputView.h"
+
+@interface VENNumberPadTextField()<NumberPadDelegate>
 
 @end
 
@@ -147,6 +159,8 @@
     NumberPadView *inputView = [[NumberPadView alloc]init];
     inputView.delegate = self;
     self.inputView = inputView;
+    [self addObserver:self forKeyPath:@"selectedTextRange" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [self addTarget:self action:@selector(editingAction) forControlEvents:UIControlEventAllEvents];
 }
 #pragma mark - NumberPadDelegate
 - (void)numberPadView:(NumberPadView *)padView didTapKey:(NSString *)key
@@ -156,6 +170,12 @@
             return;
         }
     }
+    if ([key isEqualToString:[self negativeSign]]) {
+        if ([self.text containsString:[self negativeSign]]) {
+            return;
+        }
+    }
+    
     [self insertText:key];
 }
 - (void)numberPadViewDidTapBackspace:(NumberPadView *)padView
@@ -167,8 +187,42 @@
     self.text = @"";
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"selectedTextRange"])
+    {
+        [self editingAction];
+    }
+}
+- (void)editingAction
+{
+    NumberPadView *inputView = (NumberPadView *)self.inputView;
+    [inputView showDotSign];
+    if (self.text.length == 0) {
+        [inputView showNegativeSign];
+    }
+    else {
+        if ([self.text containsString:[self negativeSign]]) {
+            [inputView showDotSign];
+        }
+        else {
+            NSRange range = [self selectedNSRange];
+            if (range.location == 0) {
+                [inputView showNegativeSign];
+            }
+        }
+    }
+}
 
 - (NSString *)decimalSeparator {
     return [self.locale objectForKey:NSLocaleDecimalSeparator];
+}
+- (NSString *)negativeSign {
+    return @"-";
+}
+
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"selectedTextRange"];
 }
 @end
