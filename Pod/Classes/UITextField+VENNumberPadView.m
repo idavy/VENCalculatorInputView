@@ -85,8 +85,25 @@
     return @"-";
 }
 
+
+- (BOOL)observerKeyPath:(NSString *)key
+{
+    id info = self.observationInfo;
+    NSArray *array = [info valueForKey:@"_observances"];
+    for (id objc in array) {
+        id Properties = [objc valueForKeyPath:@"_property"];
+        NSString *keyPath = [Properties valueForKeyPath:@"_keyPath"];
+        if ([key isEqualToString:keyPath]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (void)dealloc
 {
-    [self removeObserver:self forKeyPath:@"selectedTextRange"];
+    if ([self observerKeyPath:@"selectedTextRange"]) {
+        [self removeObserver:self forKeyPath:@"selectedTextRange"];
+    }
 }
 @end
