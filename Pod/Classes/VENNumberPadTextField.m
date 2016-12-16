@@ -111,7 +111,8 @@
     UIButton *dianBtn = (UIButton *)[self viewWithTag:66+9];
     [dianBtn setTitle:@"." forState:UIControlStateNormal];
 }
-- (void)showNegativeSign{
+- (void)showNegativeSign
+{
     UIButton *negativeBtn = (UIButton *)[self viewWithTag:66+9];
     [negativeBtn setTitle:@"-" forState:UIControlStateNormal];
 }

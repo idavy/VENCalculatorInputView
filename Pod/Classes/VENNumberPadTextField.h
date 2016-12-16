@@ -20,6 +20,9 @@
 @interface NumberPadView : UIView <UIInputViewAudioFeedback>
 @property (nonatomic,weak) __weak id<NumberPadDelegate> delegate;
 
+- (void)showDotSign;
+- (void)showNegativeSign;
+
 @property (nonatomic,copy) void (^didTapKeyBlock)(NSString *key);
 @property (nonatomic,copy) void (^didTapBackspaceBlock)();
 @property (nonatomic,copy) void (^didTapDeleteBlock)();
