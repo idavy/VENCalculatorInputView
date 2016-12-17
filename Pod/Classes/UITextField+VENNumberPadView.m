@@ -15,7 +15,9 @@
 {
     if (!isShow) {
         self.inputView = nil;
-        [self removeObserver:self forKeyPath:@"selectedTextRange"];
+        if ([self observerKeyPath:@"selectedTextRange"]) {
+            [self removeObserver:self forKeyPath:@"selectedTextRange"];
+        }
         [self removeTarget:self action:@selector(editingAction) forControlEvents:UIControlEventAllEvents];
     }
     else {
