@@ -141,7 +141,7 @@
 #import "UITextField+VENCalculatorInputView.h"
 
 @interface VENNumberPadTextField()<NumberPadDelegate>
-
+@property (nonatomic, strong) NumberPadView *numberPadView;
 @end
 
 @implementation VENNumberPadTextField
@@ -153,16 +153,34 @@
     }
     return self;
 }
+- (NumberPadView *)numberPadView
+{
+    if (!_numberPadView) {
+        _numberPadView = [[NumberPadView alloc]init];
+        _numberPadView.delegate = self;
+    }
+    return _numberPadView;
+}
 - (void)setupView
 {
     self.locale = [NSLocale currentLocale];
-
-    NumberPadView *inputView = [[NumberPadView alloc]init];
-    inputView.delegate = self;
-    self.inputView = inputView;
-    [self addObserver:self forKeyPath:@"selectedTextRange" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-    [self addTarget:self action:@selector(editingAction) forControlEvents:UIControlEventAllEvents];
+    [self addNumberPad];
 }
+- (void)addNumberPad
+{
+    if (self.inputView == self.numberPadView) {
+        return;
+    }
+    self.inputView = self.numberPadView;
+}
+- (void)removeNumberPad
+{
+    if (self.inputView == self.numberPadView) {
+        self.inputView = nil;
+    }
+}
+
+
 #pragma mark - NumberPadDelegate
 - (void)numberPadView:(NumberPadView *)padView didTapKey:(NSString *)key
 {
@@ -188,16 +206,9 @@
     self.text = @"";
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)switchNegativeSignAndPoint
 {
-    if([keyPath isEqualToString:@"selectedTextRange"])
-    {
-        [self editingAction];
-    }
-}
-- (void)editingAction
-{
-    NumberPadView *inputView = (NumberPadView *)self.inputView;
+    NumberPadView *inputView = self.numberPadView;
     [inputView showDotSign];
     if (self.text.length == 0) {
         [inputView showNegativeSign];
@@ -220,10 +231,5 @@
 }
 - (NSString *)negativeSign {
     return @"-";
-}
-
-- (void)dealloc
-{
-    [self removeObserver:self forKeyPath:@"selectedTextRange"];
 }
 @end

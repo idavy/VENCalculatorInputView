@@ -31,6 +31,10 @@
 
 @interface VENNumberPadTextField : UITextField
 @property (strong, nonatomic) NSLocale *locale;
+
+- (void)switchNegativeSignAndPoint;
+- (void)addNumberPad;
+- (void)removeNumberPad;
 @end
 
 
