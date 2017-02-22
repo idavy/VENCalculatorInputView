@@ -2,7 +2,6 @@
 
 #import "NSString+VENCalculatorInputView.h"
 #import "UITextField+VENCalculatorInputView.h"
-#import "UITextField+VENNumberPadView.h"
 #import "VENCalculatorInputTextField.h"
 #import "VENCalculatorInputView.h"
 #import "VENMoneyCalculator.h"

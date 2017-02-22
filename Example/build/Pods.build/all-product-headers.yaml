@@ -1,0 +1,68 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Example/build/Debug-iphonesimulator/VENCalculatorInputView.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "NSString+VENCalculatorInputView.h",
+          'external-contents': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Pod/Classes/NSString+VENCalculatorInputView.h"
+        },
+        {
+          'type': 'file',
+          'name': "UITextField+VENCalculatorInputView.h",
+          'external-contents': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Pod/Classes/UITextField+VENCalculatorInputView.h"
+        },
+        {
+          'type': 'file',
+          'name': "UITextField+VENNumberPadView.h",
+          'external-contents': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Pod/Classes/UITextField+VENNumberPadView.h"
+        },
+        {
+          'type': 'file',
+          'name': "VENCalculatorInputTextField.h",
+          'external-contents': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Pod/Classes/VENCalculatorInputTextField.h"
+        },
+        {
+          'type': 'file',
+          'name': "VENCalculatorInputView-Swift.h",
+          'external-contents': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Example/build/Debug-iphonesimulator/VENCalculatorInputView.framework/Headers/VENCalculatorInputView-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "VENCalculatorInputView-umbrella.h",
+          'external-contents': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Example/Pods/Target Support Files/VENCalculatorInputView/VENCalculatorInputView-umbrella.h"
+        },
+        {
+          'type': 'file',
+          'name': "VENCalculatorInputView.h",
+          'external-contents': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Pod/Classes/VENCalculatorInputView.h"
+        },
+        {
+          'type': 'file',
+          'name': "VENMoneyCalculator.h",
+          'external-contents': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Pod/Classes/VENMoneyCalculator.h"
+        },
+        {
+          'type': 'file',
+          'name': "VENNumberPadTextField.h",
+          'external-contents': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Pod/Classes/VENNumberPadTextField.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Example/build/Debug-iphonesimulator/VENCalculatorInputView.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/Dave/Desktop/WorkSpace/VENCalculatorInputView/Example/build/Pods.build/Debug-iphonesimulator/VENCalculatorInputView.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}
